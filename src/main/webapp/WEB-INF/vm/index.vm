@@ -1,0 +1,44 @@
+<html>
+<head>
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function(){
+
+          var timer;
+          var getMsgFun = function(){
+              $.ajax({
+                  url:"/getMessage",
+                  data:"{'userId':10000}",
+                  type:'GET',
+                  timeout:1000,
+                  dataType:'json',
+                  success:function(data){
+
+                      var content = $("#messagebox").val() + "\n" + data.from + "  " + data.sendTime + "\n" + data.message;
+                      $("#messagebox").val(content);
+                      $("#messagebox").verticalScrollPosition =$("#messagebox").maxVerticalScrollPosition;
+                  }
+              });
+          };
+
+          $("#getMsg").click(function() {
+                  timer = setInterval(getMsgFun, 2000);
+          });
+
+          $("#stopbtn").click(function() {
+              clearInterval(timer);
+          });
+      });
+  </script>
+</head>
+<body>
+<div style="text-align: center;font-size: 32px;">Hello World!CCCCCC</div>
+
+<div style="width: 1000px; margin: 20px auto;">
+    <textarea rows="10" id="messagebox" style="width: 800px;" disabled="disabled"></textarea>
+    <br/>
+    <input type="button" id="getMsg" value="start" name="getMsg"/>
+    <input type="button" id="stopbtn" value="stop" name="stopbtn"/>
+</div>
+</body>
+</html>
