@@ -30,15 +30,37 @@
           });
       });
   </script>
+  <link rel="stylesheet" href="/css/base.css">
 </head>
 <body>
 <div style="text-align: center;font-size: 32px;">Hello World!CCCCCC</div>
 
-<div style="width: 1000px; margin: 20px auto;">
+<div style="width: 1000px; margin: 20px auto; display: none">
     <textarea rows="10" id="messagebox" style="width: 800px;" disabled="disabled"></textarea>
     <br/>
     <input type="button" id="getMsg" value="start" name="getMsg"/>
     <input type="button" id="stopbtn" value="stop" name="stopbtn"/>
+</div>
+<div class="loginBox">
+    <form action="/login" method="post">
+        <div class="span">欢迎登陆</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td><label>姓名</label></td>
+                    <td><input type="text" name="name"/> </td>
+                </tr>
+                <tr>
+                    <td><labe>密码</labe></td>
+                    <td><input type="password" name="passwd"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" id="submit" value="登录"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
 </body>
 </html>
