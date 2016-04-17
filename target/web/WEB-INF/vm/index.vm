@@ -3,7 +3,7 @@
 
 </head>
 <body>
-<button name="logout" value="logout" onclick="window.location.href='/logout.htm'"></button>
+<button name="logout" value="logout" onclick="window.location.href='/logout.htm'"/>
 <div style="text-align: center; font-size: 32px;">Welcome to index page!</div>
 </body>
 </html>
