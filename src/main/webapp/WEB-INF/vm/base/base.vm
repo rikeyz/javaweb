@@ -1,8 +1,9 @@
 
 <div>
-    <div style="float: right; margin-right: 50px;">
+    <div style="float: right; margin-right: 150px;">
         #if($loginStatus.isLogin())
-        $loginStatus.getName()
+        <a href="/user/detail?userId=$loginStatus.getUser().getId()">$loginStatus.getUser().getUserName()</a>
+        <a href="/logout.htm">退出</a>
         #else
             <form action="/dologin.htm" method="post">
                 <input type="text" name="userName"/>

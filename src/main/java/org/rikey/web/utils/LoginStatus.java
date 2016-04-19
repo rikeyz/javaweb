@@ -1,6 +1,7 @@
 package org.rikey.web.utils;
 
 import org.apache.shiro.SecurityUtils;
+import org.rikey.web.domain.User;
 
 /**
  * @Description:
@@ -14,8 +15,8 @@ public class LoginStatus {
         return SecurityUtils.getSubject().isAuthenticated();
     }
 
-    public String getName() {
-        Object obj = SecurityUtils.getSubject().getPrincipal();
-        return (String)obj;
+    public User getUser() {
+        User user = (User)SecurityUtils.getSubject().getPrincipal();
+        return user;
     }
 }

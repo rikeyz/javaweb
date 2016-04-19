@@ -9,25 +9,20 @@
        <bean id="lifecyleBeanPostProcessor"
              class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
-       <bean id="credentialsMatcher"
-             class="org.apache.shiro.authc.credential.SimpleCredentialsMatcher"/>
+       <bean id="shiroDbRealm" class="org.rikey.web.biz.shiro.ShiroDBRealm">
+              <property name="credentialsMatcher">
+                     <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                            <property name="hashAlgorithmName" value="SHA-256"/>
+                            <property name="storedCredentialsHexEncoded" value="false"/>
+                     </bean>
+              </property>
+       </bean>
 
        <bean id="cacheManager"
              class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
 
-       <bean id="jdbcRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
-              <property name="credentialsMatcher" ref="credentialsMatcher"/>
-              <property name="permissionsLookupEnabled" value="true"/>
-              <property name="dataSource" ref="dataSource"/>
-              <property name="authenticationQuery"
-                        value="SELECT password FROM user WHERE user_name=?"/>
-              <property name="userRolesQuery"
-                        value="SELECT role_name from user_role left join role using(role_id) left join user using(user_id) WHERE user_name = ?"/>
-              <property name="permissionsQuery"
-                 value="SELECT permission_name FROM role_permission left join role using(role_id) left join permission using(permission_id) WHERE role_name = ?"/>
-       </bean>
        <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-              <property name="realm" ref="jdbcRealm"/>
+              <property name="realm" ref="shiroDbRealm"/>
               <property name="cacheManager" ref="cacheManager"/>
        </bean>
        <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">

@@ -9,7 +9,10 @@
     </resultMap>
 
     <insert id="addUser" parameterType="org.rikey.web.domain.User" useGeneratedKeys="true">
-        INSERT INTO user(user_name, password) VALUES (#{userName, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR})
+        INSERT INTO user(user_name, password, salt) VALUES (#{userName, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, #{salt, jdbcType=VARCHAR})
     </insert>
 
+    <select id="queryUser" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT id, user_name, password, salt FROM user WHERE user_name = #{userName, jdbcType=VARCHAR}
+    </select>
 </mapper>

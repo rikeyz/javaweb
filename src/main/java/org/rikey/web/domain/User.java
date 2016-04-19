@@ -24,6 +24,17 @@ public class User {
 
     private String password;
 
+    private String salt;
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getSalt() {
+
+        return salt;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }

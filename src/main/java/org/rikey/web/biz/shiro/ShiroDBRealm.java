@@ -1,17 +1,19 @@
 package org.rikey.web.biz.shiro;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.rikey.web.biz.shiro.result.UserLoginResult;
+import org.rikey.web.dao.UserDao;
+import org.rikey.web.domain.User;
+
+import javax.annotation.Resource;
 
 /**
  * @Description:
@@ -21,6 +23,12 @@ import org.rikey.web.biz.shiro.result.UserLoginResult;
  * @Notice 如有改动，请在changelist中注明
  */
 public class ShiroDBRealm extends AuthorizingRealm {
+
+    @Resource(name = "userDao")
+    private UserDao userDao;
+
+    private static final String REALM_NAME = "shiroDbRealm";
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String userName = (String)super.getAvailablePrincipal(principals);
@@ -44,13 +52,14 @@ public class ShiroDBRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken)token;
         String userName = usernamePasswordToken.getUsername();
+        User user = userDao.queryUser(userName);
 
-        if (userName == null) {
+        if (user == null || user.getPassword() == null) {
             return null;
         }
 
-        UserLoginResult user = new UserLoginResult();
+        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), REALM_NAME);
 
-        return null;
+        return authenticationInfo;
     }
 }
