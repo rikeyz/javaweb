@@ -1,10 +1,7 @@
 <html>
-    <head>
-
-    </head>
-    <body>
-    <div style="text-align: center;">
-        <h1>this is a user's detail information!</h1>
-    </div>
-    </body>
+<body>
+#parse("base/base.vm")
+<div style="clear: both;">This is detail content</div>
+</body>
 </html>
+

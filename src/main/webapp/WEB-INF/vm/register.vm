@@ -1,0 +1,69 @@
+<html>
+<head>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#repassword").blur(function(){
+                if ($("#password").val() != $("repassword").val()) {
+                    $("#confirmWarn").css("display: block;");
+                } else {
+                    $("#confirmWarn").css("display: none;");
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+        body{
+            background-color: floralwhite;
+        }
+        .registerBox {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            -webkit-box-shadow: 0px 0px 12px;
+            -moz-box-shadow: 0px 0px 12px;
+            box-shadow: 0px 0px 12px;
+            top: 50%;
+            left: 50%;
+            margin-top: -150px;
+            margin-left: -150px;
+            z-index: 10;
+        }
+        .registerBox td:first-child {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+<div class="registerBox">
+    <form id="register" action="/doregister" method="post">
+        <div style="text-align: center; height: 40px; margin-top: 15px;"><strong>注册新用户</strong></div>
+        <table>
+
+            <tbody>
+              <tr>
+                  <td>姓名</td>
+                  <td><input type="text" id="name" name="userName" /> </td>
+              </tr>
+              <tr>
+                  <td>密码</td>
+                  <td><input type="password" id="password" name="password"></td>
+              </tr>
+              <tr>
+                  <td>确认密码</td>
+                  <td><input type="password" id="repassword" name="repassword"></td>
+              </tr>
+              <tr id="confirmWarn" style="display: none">
+                  <td></td>
+                  <td><span style="color: red;">两次输入密码不一致</span> </td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td><input type="submit" value="注册"></td>
+              </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

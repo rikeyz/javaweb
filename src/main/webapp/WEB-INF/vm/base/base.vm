@@ -1,0 +1,15 @@
+
+<div>
+    <div style="float: right; margin-right: 50px;">
+        #if($loginStatus.isLogin())
+        $loginStatus.getName()
+        #else
+            <form action="/dologin.htm" method="post">
+                <input type="text" name="userName"/>
+                <input type="password" name="password"/>
+                <input type="submit" value="登录"/>
+            </form>
+
+#end
+    </div>
+</div>

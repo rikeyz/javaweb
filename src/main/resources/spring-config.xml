@@ -21,4 +21,5 @@
     <context:component-scan base-package="org.rikey"/>
     <import resource="classpath:spring-mvc.xml"/>
     <import resource="classpath:spring-shiro.xml"/>
+    <import resource="spring-mybatis.xml"/>
 </beans>

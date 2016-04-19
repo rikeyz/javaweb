@@ -56,7 +56,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td><a href="/register.htm">注册新用户</a></td>
+                </tr>
+                <tr>
                     <td>$!{msg}</td>
                 </tr>
                 <tr>
