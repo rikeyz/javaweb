@@ -15,6 +15,7 @@ public class LoginStatus {
     }
 
     public String getName() {
-        return (String)SecurityUtils.getSubject().getPrincipal();
+        Object obj = SecurityUtils.getSubject().getPrincipal();
+        return (String)obj;
     }
 }

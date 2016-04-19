@@ -1,12 +1,15 @@
 <html>
 <head>
+    <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#repassword").blur(function(){
-                if ($("#password").val() != $("repassword").val()) {
-                    $("#confirmWarn").css("display: block;");
+                if ($("#password").val() != $("#repassword").val()) {
+                    $("#confirmWarn").show();
+                    $("#submit").attr("disabled", true);
                 } else {
-                    $("#confirmWarn").css("display: none;");
+                    $("#confirmWarn").css('display','none');
+                    $("#submit").attr("disabled", false);
                 }
             });
         });
@@ -54,12 +57,12 @@
                   <td><input type="password" id="repassword" name="repassword"></td>
               </tr>
               <tr id="confirmWarn" style="display: none">
-                  <td></td>
+                  <td> </td>
                   <td><span style="color: red;">两次输入密码不一致</span> </td>
               </tr>
               <tr>
                   <td></td>
-                  <td><input type="submit" value="注册"></td>
+                  <td><input id="submit" type="submit" value="注册"></td>
               </tr>
             </tbody>
         </table>
