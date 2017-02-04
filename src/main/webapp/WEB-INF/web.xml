@@ -25,6 +25,8 @@
         <filter-name>Set Character Encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+
     
     <!--&lt;!&ndash; css,js 不走spring &ndash;&gt;-->
     <!--<servlet-mapping>-->
@@ -43,6 +45,11 @@
         <!--<servlet-name>default</servlet-name>-->
         <!--<url-pattern>*.css</url-pattern>-->
     <!--</servlet-mapping>-->
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
 
     <servlet>
         <servlet-name>spring</servlet-name>
