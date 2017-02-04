@@ -69,7 +69,7 @@
                     if (data.code=='0') {
                         alert(data.msg);
                     } else  {
-                        $("#resultImg").attr('src','/image/'+data.file);
+                        $("#resultImg").attr('src','/file/getImage/'+data.file);
                         $("#result").show();
                         alert("上传成功!");
                     }

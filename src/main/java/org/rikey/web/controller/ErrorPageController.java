@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2017/2/4 15:38
  */
 @Controller
-public class NotFoundController {
+public class ErrorPageController {
     @RequestMapping(value = {"/404.html"})
     public String _404NotFound() {
         return "404";

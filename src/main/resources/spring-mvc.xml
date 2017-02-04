@@ -19,7 +19,7 @@
 
         <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
         <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
-        <mvc:resources mapping="/image/**" location="/WEB-INF/image/"/>
+        <mvc:resources mapping="/image/**" location="/WEB-INF/image/" cache-period="0"/>
         <bean id="loginStatus" class="org.rikey.web.utils.LoginStatus"/>
         <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
                 <property name="suffix" value=".vm"/>
