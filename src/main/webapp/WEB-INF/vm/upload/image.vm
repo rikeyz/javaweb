@@ -1,0 +1,82 @@
+<html>
+<head>
+    <title>图片上传</title>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+</head>
+<body>
+<form id= "uploadForm">
+    <p >指定文件名： <input type="text" name="filename" value= ""/></p >
+    <p>上传文件： <a href="javascript:;" class="a-upload">
+        <input type="file" name="imageFile" id="imageFile">点击这里上传文件
+    </a></p>
+    <input type="button" value="上传" onclick="ajaxFileUpload()" />
+</form>
+<div id="result" style="display:none;">
+    <img id="resultImg" src=""/>
+</div>
+<style type="text/css">
+    .a-upload {
+        padding: 4px 10px;
+        height: 20px;
+        line-height: 20px;
+        position: relative;
+        cursor: pointer;
+        color: #888;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        display: inline-block;
+        *display: inline;
+        *zoom: 1;
+        text-decoration: none
+    }
+
+    .a-upload  input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: pointer
+    }
+
+    .a-upload:hover {
+        color: #444;
+        background: #eee;
+        border-color: #ccc;
+        text-decoration: none
+    }
+</style>
+<script>
+
+        function ajaxFileUpload() {
+            var formData = new FormData($( "#uploadForm" )[0]);
+            var fileInfo = $("#btnFile").val();
+
+            jQuery.ajax({
+                url: '/file/uploadImage',
+                data: formData,
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                type: 'POST',
+                success: function(data) {
+                    if (data.code=='0') {
+                        alert(data.msg);
+                    } else  {
+                        $("#resultImg").attr('src','/image/'+data.file);
+                        $("#result").show();
+                        alert("上传成功!");
+                    }
+                }
+            });
+        }
+
+</script>
+</body>
+</html>

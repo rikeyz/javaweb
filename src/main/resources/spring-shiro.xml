@@ -39,8 +39,9 @@
                             /css/**=anon
                             /js/**=anon
                             /user/**=anon
+                            /file/**=anon
+                            /image/**=anon
                             /**=authc
-
                      </value>
               </property>
        </bean>
